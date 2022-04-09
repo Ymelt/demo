@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.config.Result;
 import com.example.entity.User;
 import com.example.mapper.UserMapper;
+import com.example.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -45,7 +46,9 @@ public class UserService extends ServiceImpl<UserMapper,User> implements IUserSe
             //String token = String.valueOf(random(10));
             //存到redis，并设置30分钟过期时间
 //            RedisUtils.INSTANCE.set(token, JSON.toJSONString(user),60*30 );
-            String token = "a";
+            //设置token
+            String token = TokenUtils.getToken(one.getUserId().toString(),one.getUserPassword());
+
             return new Result(true,token,user);
 //
         }else{

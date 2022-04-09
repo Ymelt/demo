@@ -99,7 +99,10 @@ public class UserController {
         return libraryService.ycode(library);
     }
 
-
+    @RequestMapping("/q")
+    public Object test(){
+        return "";
+    }
 
 
 
